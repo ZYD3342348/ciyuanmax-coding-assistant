@@ -3,6 +3,7 @@ package store
 import (
 	"os"
 	"path/filepath"
+	"runtime"
 	"testing"
 )
 
@@ -24,7 +25,8 @@ func TestSaveLoadUsesPrivateAtomicState(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if info.Mode().Perm() != 0600 {
+	// Windows inherits the user's ACL and does not expose POSIX 0600 mode bits.
+	if runtime.GOOS != "windows" && info.Mode().Perm() != 0600 {
 		t.Fatalf("session mode = %o, want 600", info.Mode().Perm())
 	}
 }
