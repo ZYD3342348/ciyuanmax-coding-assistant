@@ -37,7 +37,7 @@ ciyuanmax logout
 - macOS：`~/Library/Application Support/CiYuanMax/session.json`
 - Windows：`%AppData%\\ciyuanmax\\session.json`
 
-文件权限为用户私有（`0600`）。不要把该文件、配置备份或 API Key 提交到 Git。
+macOS 会将会话文件设为 `0600`；Windows 会使用 `%AppData%` 目录继承的当前用户 ACL。不要把该文件、配置备份或 API Key 提交到 Git。
 
 ## 构建
 
